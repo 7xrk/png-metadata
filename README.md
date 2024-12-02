@@ -1,39 +1,24 @@
+originally: https://github.com/hometlt/png-metadata
+
 # png-metadata
+
 library to read and write PNG Metadata on NodeJS and Browser
 
 w3 PNG Chunks specification: https://www.w3.org/TR/PNG-Chunks.html
 
 The Metadata in PNG files: https://dev.exiv2.org/projects/exiv2/wiki/The_Metadata_in_PNG_files
- 
- 
- ### example with buffers
+
+### example with buffers
+
 ```javascript
-  function loadFileAsBlob(url){
-    return new Promise((resolve, reject) => {
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', url, true);
-      xhr.responseType = 'blob';
-      xhr.onload = function(e) {
-        if (this.status === 200) {
-          resolve(this.response);
-          // myBlob is now the blob that the object URL pointed to.
-        }else{
-          reject(this.response);
-        }
-      };
-      xhr.send();
-    })
-  };
+//Browser
+const buffer = new Uint8Array(await (await fetch("1000ppcm.png")).arrayBuffer());
 
-  //Browser
-  const blob = await loadFileAsBlob('1000ppcm.png');
-  const buffer = await blob.arrayBuffer();
+//NodeJS
+const buffer = Uint8Array.from(fs.readFileSync("1000ppcm.png"));
 
-  //NodeJS
-  const buffer = fs.readFileSync('1000ppcm.png')
-
-  //read metadata
-  metadata = readMetadata(buffer);
+//read metadata
+metadata = readMetadata(buffer);
 ```
 
 ### metadata format
@@ -42,7 +27,7 @@ image with 300 dpi
 
 ```javascript
 {
-  "pHYs": { 
+  "pHYs": {
     "x": 30000,
     "y": 30000,
     "units": RESOLUTION_UNITS.INCHES
@@ -64,14 +49,14 @@ image with 300 dpi
 ### writing metadata
 
 ```javascript
-writeMetadata(buffer,metadata);
+writeMetadata(buffer, metadata);
 ```
 
 ### save image from canvas
 
 ```javascript
-canvas.toBlob(blob => {
-    let newBlob = fabric.util.png.writeMetadataB(blob, metadata);
-    saveAs(newBlob, title);
+canvas.toBlob((blob) => {
+  let newBlob = fabric.util.png.writeMetadataB(blob, metadata);
+  saveAs(newBlob, title);
 });
 ```

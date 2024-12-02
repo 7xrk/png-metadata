@@ -1,0 +1,12 @@
+{
+  "name": "@7xrk/png-metadata-writer",
+  "version": "1.0.0",
+  "license": "MIT",
+  "exports": "./mod.ts",
+  "publish": {
+    "exclude": [".vscode"]
+  },
+  "imports": {
+    "@deno-library/crc32": "jsr:@deno-library/crc32@^1.0.2"
+  }
+}

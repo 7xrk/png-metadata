@@ -1,0 +1,16 @@
+{
+  "version": "4",
+  "specifiers": {
+    "jsr:@deno-library/crc32@^1.0.2": "1.0.2"
+  },
+  "jsr": {
+    "@deno-library/crc32@1.0.2": {
+      "integrity": "d2061bfee30c87c97f285dfca0fdc4458e632dc072a33ecfc73ca5177a5a39a0"
+    }
+  },
+  "workspace": {
+    "dependencies": [
+      "jsr:@deno-library/crc32@^1.0.2"
+    ]
+  }
+}
